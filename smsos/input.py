@@ -13,12 +13,10 @@ class CsvDataInput:
         self.data = self._load_csv(filepath, encoding)
         self.split_index = self._get_data_split(training_cases)
 
-        self.train = None
-        self.test  = None
+        self.train, self.test = self.split_data()
 
     def split_data(self):
-        self.train = self.data[self.split_index:]
-        self.test  = self.data[:self.split_index]
+        return (self.data[self.split_index:], self.data[:self.split_index])
 
     def _load_csv(self, path, encoding):
 
