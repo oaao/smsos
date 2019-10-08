@@ -16,7 +16,7 @@ class CsvDataInput:
         self.train, self.test = self.split_data()
 
     def split_data(self):
-        return (self.data[self.split_index:], self.data[:self.split_index])
+        return (self.data[:self.split_index], self.data[self.split_index:])
 
     def _load_csv(self, path, encoding):
 
