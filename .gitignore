@@ -1,2 +1,5 @@
 # env
 Pipfile*
+
+# dataset - do not bypass Kaggle
+spam.csv
