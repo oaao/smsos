@@ -37,7 +37,7 @@ CLASSIFIERS = [
     DummyClassifier(),
     ExtraTreesClassifier(),
     GradientBoostingClassifier(),
-    KNeighborsClassifier()
+    KNeighborsClassifier(),
     OneVsRestClassifier(LogisticRegression()),
     OneVsRestClassifier(SVC(kernel='linear')),
     PassiveAggressiveClassifier(),
