@@ -1,20 +1,18 @@
 from operator import itemgetter
 
 from classifiers import CLASSIFIERS, VECTORIZERS
+from config import CONFIG
 from input import CsvDataInput
 
-DATA = CsvDataInput(
-    '../dataset/spam.csv',
-    training_cases=0.75,
-    encoding='latin-1'
-)
 
 class ClassifierScorer:
 
-    def __init__(self, data=DATA, c=CLASSIFIERS, v=VECTORIZERS):
+    def __init__(self, config=CONFIG, c=CLASSIFIERS, v=VECTORIZERS):
 
-        self.train = data.train
-        self.test  = data.test
+        self.data = CsvDataInput(**CONFIG)
+
+        self.train = self.data.train
+        self.test  = self.data.test
 
         self.c = c
         self.v = v
@@ -37,7 +35,8 @@ class ClassifierScorer:
                 scores.append(result)
 
         # result is shaped as (classifier, vectorizer, score)
-        #     we sort in descending order by score
+        #     - we sort in descending order by score
+        #     - itemgetter outperforms lambdas even for tuple indices
         scores.sort(key=itemgetter(2), reverse=True)
 
         self.scores = scores
